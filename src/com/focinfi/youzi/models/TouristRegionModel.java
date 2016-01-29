@@ -33,7 +33,7 @@ public class TouristRegionModel implements ITouristRegionModel {
     @Override
     public TouristRegionBean find(String id, Context context) throws IOException {
         if (App.getSingleton().isTestMode()) {
-            if (mockTouristRegionBean == null) {
+            if (mockTouristRegionBean.getId() == null) {
                 mockTouristRegionBean = mockLoad("1");
             }
         } else {
@@ -58,7 +58,7 @@ public class TouristRegionModel implements ITouristRegionModel {
 
     public TouristRegionBean load(String id) throws IOException {
         Request request = new Request.Builder()
-                .url("http://139.129.45.140:3000/tourist_region/" + id)
+                .url("http://139.129.45.140:3000/tourist_regions/" + id)
                 .build();
         Response response = client.newCall(request).execute();
         if (response.isSuccessful()) {
